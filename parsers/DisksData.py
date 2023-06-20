@@ -1,7 +1,7 @@
 from pySMART import *
 from math import floor
 
-def _get_internal_disks():
+def get_internal_disks():
     return DeviceList()
     internal_disks = []
     disks = DeviceList()
@@ -13,7 +13,7 @@ def _get_internal_disks():
 
 def getDisksData() :
 	returnString = ""
-	internal_disks = _get_internal_disks()
+	internal_disks = get_internal_disks()
 	i = 1
 	for disk in internal_disks:
 		disk_type = "Unknown Type"

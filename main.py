@@ -5,58 +5,41 @@ from parsers.DisksData import getDisksData
 from parsers.ProductData import getProductData
 from parsers.VideoAdaptersData import getVideoAdaptersData
 
-import tkinter as tk
-from tkinter import *
+from GUI import MainWindow
 
+import utils.FormatDrives
 
-##########################
-#    HELPER FUNCTIONS    #
-##########################
-
-def keyboardTestClick(): 
-    subprocess.run(['sudo','-u', 'mint', 'xdg-open', 'https://www.key-test.ru'])
 ##########################
 #    PRINT SECTION       #
 ##########################
 
 #set variables for output
-
 strout = ""
 
 #PRINT THE PROCESSOR SPECS
 strout += getProcessorData()
-
 #PRINT RAM
 strout += getRamData()
-
 #PRINT BATTERY
 strout += getBatteryData()
-
 #PRINT DISKS
 strout += getDisksData()
-
 #PRINT PRODUCTS INFO
-
 strout += getProductData()
-
 #Graphical adapters
 strout += getVideoAdaptersData()
 
-
-#graphical stuff
-window = tk.Tk()
-label = tk.Label(window, text=strout, anchor="w", justify=LEFT)
-label.pack(anchor='w', side= TOP)
+print(utils.FormatDrives.listDisks())
 
 
+#set graphical elements
+gui = MainWindow()
+gui.setInfoSection(strout)
+gui.setKeytestButton()
+gui.setFormatDisks()
+gui.run()
 
 
-############################
-#WRAP UP AND OUTPUT SECTION#
-############################
 
-button = tk.Button(window, text="GO TO KEYBOARD TEST", command=keyboardTestClick)
-button.pack()
 
-window.mainloop()
 
