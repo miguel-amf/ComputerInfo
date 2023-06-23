@@ -15,7 +15,12 @@ def getDisksData() :
 	returnString = ""
 	internal_disks = get_internal_disks()
 	i = 1
+	badsectors = -1
 	for disk in internal_disks:
+		for attr in disk.attributes:
+			if attr != None and attr.name == 'Reallocated_Sector_Ct' :
+				badsectors = attr.raw 
+				break
 		disk_type = "Unknown Type"
 		if(disk.is_ssd) :
 			disk_type = 'SSD'   
@@ -23,6 +28,6 @@ def getDisksData() :
 			disk_type = 'HDD'    
 		returnString += "DISK" + str(i) + ":\t\t" + \
 						str(disk_type) + " " + str(floor(disk.size/1000**3)) + \
-						" GB | BAD SECTORS: " + smart_health_assement(disk.name) +'\n'
+						" GB | BAD SECTORS: " + str(badsectors) +'\n'
 		i += 1
 	return returnString
