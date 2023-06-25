@@ -29,7 +29,9 @@ strout += getProductData()
 #Graphical adapters
 strout += getVideoAdaptersData()
 
-print(utils.FormatDrives.listDisks())
+for disk in utils.FormatDrives.getDisks():
+    pass
+    #print("name: ", disk['name'], " Size: ", disk['capacity'])
 
 
 #set graphical elements

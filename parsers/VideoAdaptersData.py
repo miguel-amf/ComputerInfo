@@ -21,7 +21,8 @@ def getVideoAdaptersData():
     if gpuNames is not None:
         for gpu in gpuNames:
             outputString += gpu + ' | '
-        outputString += '\n'
     else:
-        outputString += 'no GPU Found' + '\n'
-    return outputString
+        outputString += 'no GPU Found'
+
+    outputString = outputString[:-3]
+    return outputString + '\n'
