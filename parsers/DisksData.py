@@ -28,7 +28,6 @@ def getDisksData() :
 	for disk in internal_disks:
 		print(disk.diagnostics)
 		for attr in disk.attributes:
-			
 			#check if attribute has realocated in it
 			if attr != None and 'Reallocated' in attr.name:
 				#get the raw value of bad sectors

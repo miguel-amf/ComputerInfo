@@ -1,11 +1,13 @@
 import tkinter as tk
 from tkinter import *
 import subprocess
+from utils.FormatDrives import getDisks
 
 class MainWindow:
 	window = tk.Tk()
 	packstack = []
 	formatTarget = tk.StringVar(window)
+	diskList = getDisks()
 	def __init__(self) :
 		self.window.title("BB HOUSE FOGUETE NAO TEM RE")
 		return
@@ -52,8 +54,11 @@ class MainWindow:
 	def setFormatDisks(self):
 		formatFrame = tk.Frame(self.window)
 
-		dropDown = tk.OptionMenu(formatFrame, self.formatTarget, "HDD1", "HDD2")
-		self.formatTarget.set("HDD1")
+
+
+		dropDown = tk.OptionMenu(formatFrame, self.formatTarget, None)
+
+		self.formatTarget.set("Select a disk")
 		dropDown.grid(row=0, column=0)
 
 		buttonFormat = self._setFormatButton(formatFrame)

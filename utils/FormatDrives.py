@@ -1,7 +1,7 @@
 import psutil
 from subprocess import check_output
 
-def listDisks():
+def getDisks():
 	disksNames = []
 	output = check_output(['parted', '-l'])
 	output = output.decode('utf-8')
