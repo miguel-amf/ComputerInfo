@@ -20,7 +20,7 @@ chown -R root:root /usr/sbin/ComputerInfo
 
 # move startup file to startup folder
 
-cp -rv pchelper.desktop /etc/xdg/autostart
+cp -rv pchelper.desktop ~/.config/autostart/
 
 # enable the startup file
 
