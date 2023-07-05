@@ -1,34 +1,37 @@
 #!/bin/bash
 
 # Install the required packages
-apt install -y python3-pip
 
-apt install -y smartmontools
+echo "Installing packages..."
+apt install -y -q python3-pip
 
-pip3 install pysmart
+apt install -y -q smartmontools
 
-pip3 install tk
+pip3 install pysmart --quiet
+
+pip3 install tk --quiet
+
+echo "installing program files..."
 
 # Clone the Git repository
 git clone https://github.com/miguel-amf/ComputerInfo.git
 
+echo "Moving files to system folders..."
+
 # Move the cloned repository to /usr/sbin
-cp -rv ComputerInfo /usr/sbin
+cp -r ComputerInfo /usr/sbin
+
+#move the keyboard test website shortcut to the desktop
+cp KEYTEST.desktop /home/mint/Desktop/
 
 # Change ownership of the moved repository to root
 chown -R root:root /usr/sbin/ComputerInfo
 
 # move startup file to startup folder
+cp -r pchelper.desktop /home/mint/.config/autostart/
 
-cp -rv pchelper.desktop ~/.config/autostart/
 
-# enable the startup file
 
-#sudo systemctl enable /etc/systemd/system/pchelper.service
-
-# run the service
-
-#sudo systemctl start pchelper
 
 # Optional: Clean up by removing the cloned repository directory
 rm -rf ComputerInfo
